@@ -15,19 +15,46 @@ public class File {
      */
     public static void readFile(){
         String nom = "nom.txt";
-        int x = 0;
+        Original original = Original.InstanceOriginal();
+        Nouveau nouveau = Nouveau.instanceNouveau();
+
+
         double d = 0.0;
+
+        int count = 0;
         try {
             FileReader fr = new FileReader(nom);
             BufferedReader fichier = new BufferedReader(fr);
             Scanner sc = new Scanner(fichier);
             sc.useLocale( Locale.CANADA );
-            if( sc.hasNextInt() ) {
-                x = sc.nextInt();
+
+            while (sc.hasNext())
+            {
+                if( sc.hasNextInt() ) {
+                    original.setDegreK(sc.nextInt());
+                    count++;
+                }
+                if( sc.hasNextDouble() ) {
+                    d = sc.nextDouble();
+                    switch (count){
+                        case 1:
+                            original.setX0(d);
+                            break;
+                        case 2:
+                            original.setDistanceH(d);
+                            break;
+                        case 3:
+                            nouveau.setDistHPrime(d);
+                            break;
+                        default:
+                            original.getCoordonnees().add(new Coordonnees(0,d));
+                            break;
+                    }
+                    count++;
+                }
             }
-            if( sc.hasNextDouble() ) {
-                d = sc.nextDouble();
-            }
+            count -= 4;
+            original.setN(count);
             sc.close();
         } catch ( FileNotFoundException e ) {
             System.err.println("Le fichier spécifié est introuvable.");

@@ -2,9 +2,9 @@ public class Coordonnees {
     private double X;
     private double Y;
 
-    public Coordonnees() {
-        setX(0);
-        setY(0);
+    public Coordonnees(double x, double y) {
+        setX(x);
+        setY(y);
     }
 
     public double getX() {
