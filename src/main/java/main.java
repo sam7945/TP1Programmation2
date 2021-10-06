@@ -1,12 +1,17 @@
 
 
 public class main {
-    Original original = Original.InstanceOriginal();
-    Nouveau nouveau = Nouveau.instanceNouveau();
+    private static Original original = Original.InstanceOriginal();
+    private static Nouveau nouveau = Nouveau.instanceNouveau();
 
     public static void main(String[] args) {
-        //c.calculPolynome((Coordonnees[]) array.toArray(),(Coordonnees[]) array.toArray(),20,20,20.0);
         File.readFile();
+        affichage();
     }
 
+    public static void affichage() {
+        for (int i = 0; i < nouveau.getCoordonnees().size(); i++) {
+            System.out.println(nouveau.getCoordonnees().get(i).getY());
+        }
+    }
 }

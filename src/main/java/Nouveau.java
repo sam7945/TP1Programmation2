@@ -22,18 +22,31 @@ public class Nouveau {
         return nouveau;
     }
 
+    /**
+     * Calcule le nombre de points en sortie.
+     *
+     * @param nbValeur de point original total.
+     * @param h        distance entre deux points dans le fichier d'entré.
+     */
     public void calculM(double h, double nbValeur) {
         nbValeurM = (int) (((nbValeur - 1) * h) / distHPrime) + 1;
     }
+
+    public void calculCoordonnee(double x0, int k) {
+        calculX(x0);
+        calculY(k);
+    }
+
+    ;
 
     /**
      * Calcule la valeur du x pour chaque nouveau point et l'ajoute dans un arraylist.
      *
      * @param x0 la valeur du x original.
      */
-    public void calculX(int x0) {
+    private void calculX(double x0) {
         for (int j = 0; j < nbValeurM; j++) {
-            coordonnees.add(new Coordonnee(x0 + j * distHPrime, 0));
+            coordonnees.add(new Coordonnee(x0 + j * distHPrime, 0, j));
         }
     }
 
@@ -59,20 +72,19 @@ public class Nouveau {
 
         for (Coordonnee coordonne : getCoordonnees()) {
 
-            double coo =
+            int i =
                     original.getCoordonnees().stream().filter(n -> (n.getX() <= coordonne.getX()))
-                            .max(Comparator.comparing(Coordonnee::getX)).orElseThrow().getX();
-            int i = (int) coo;
+                            .max(Comparator.comparing(Coordonnee::getX)).orElseThrow().getPosition();
+            Coordonnee[] coordonneesOri = original.getCoordonnees().toArray(new Coordonnee[0]);
+            Coordonnee[] coordonneesNou = getCoordonnees().toArray(new Coordonnee[0]);
 
-            calculs.calculPolynome(
-                    (Coordonnee[]) original.getCoordonnees().toArray(),
-                    (Coordonnee[]) getCoordonnees().toArray(), i,
-                    (int) coordonne.getX(),
-                    original.getDistanceH());
+            coordonne.setY(calculs.calculPolynome(
+                    coordonneesOri,
+                    coordonneesNou, i,
+                    coordonne.getPosition(),
+                    original.getDistanceH()));
         }
     }
-
-
 
 
     public ArrayList<Coordonnee> getCoordonnees() {

@@ -15,7 +15,7 @@ public class File {
      * Demande à l'utilisateur le nom du fichier qu'il souhaite donner en traitement.
      * Lis le fichier en entrée et récupère les données nécessaire au traitement.
      */
-    public static void readFile(){
+    public static void readFile() {
         String nom = demanderNomFichier();
 
         Original original = Original.InstanceOriginal();
@@ -27,16 +27,15 @@ public class File {
         try {
             Path path = FileSystems.getDefault().getPath(nom);
             Scanner sc = new Scanner(Files.newBufferedReader(path));
-            sc.useLocale( Locale.CANADA );
+            sc.useLocale(Locale.CANADA);
 
-            while (sc.hasNext())
-            {
-                if( sc.hasNextInt() ) {
+            while (sc.hasNext()) {
+                if (sc.hasNextInt()) {
                     original.setDegreK(sc.nextInt());
                     count++;
-                } else if ( sc.hasNextDouble() ) {
+                } else if (sc.hasNextDouble()) {
                     d = sc.nextDouble();
-                    switch (count){
+                    switch (count) {
                         case 1:
                             original.setX0(d);
                             break;
@@ -47,7 +46,8 @@ public class File {
                             nouveau.setDistHPrime(d);
                             break;
                         default:
-                            original.getCoordonnees().add(new Coordonnee(0,d));
+                            original.getCoordonnees().add(new Coordonnee(0, d,
+                                    count - 4));
                             break;
                     }
                     count++;
@@ -58,15 +58,19 @@ public class File {
             count -= 4;
             original.setN(count);
             original.getCoordonnees().stream().findFirst().get().setX(original.getX0());
+            original.calculXi();
+            nouveau.calculM(original.getDistanceH(), original.getN());
+            nouveau.calculCoordonnee(original.getCoordonnees().get(0).getX(),
+                    original.getDegreK());
             sc.close();
-        } catch ( FileNotFoundException e ) {
+        } catch (FileNotFoundException e) {
             System.err.println("Le fichier spécifié est introuvable.");
-        } catch ( IOException e ) {
+        } catch (IOException e) {
             System.err.println("Une erreur est survenue lors de la lecture du" +
                     " fichier.");
-        } catch ( FileDataException e ) {
-            System.err.println( "Les données du fichier contiennent " +
-                    "du texte. Veuillez fournir un fichier conforme." );
+        } catch (FileDataException e) {
+            System.err.println("Les données du fichier contiennent " +
+                    "du texte. Veuillez fournir un fichier conforme.");
         }
     }
 
@@ -79,7 +83,7 @@ public class File {
         String nom;
 
         System.out.println("Veuillez entrer le nom de votre fichier :");
-        Scanner clavier = new Scanner( System.in );
+        Scanner clavier = new Scanner(System.in);
         nom = clavier.nextLine();
         clavier.close();
         return nom;

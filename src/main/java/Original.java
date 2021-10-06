@@ -29,18 +29,6 @@ public class Original {
     }
 
     /**
-     * Calcule le nombre de points en sortie.
-     *
-     * @param n nombre de point original total.
-     * @param h distance entre deux points dans le fichier d'entré.
-     * @param hPrime distance entre deux points en sortie.
-     * @return le nombre de points en sortie.
-     */
-    public double calculM(int n, double h, double hPrime) {
-        return (((n - 1) * h) / hPrime) + 1;
-    }
-
-    /**
      * Calcule la valeur des x originaux et les ajoute dans un objet coordonnée.
      */
     public void calculXi() {

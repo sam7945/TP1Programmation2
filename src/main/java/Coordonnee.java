@@ -1,10 +1,12 @@
 public class Coordonnee {
     private double X;
     private double Y;
+    private int position;
 
-    public Coordonnee(double x, double y) {
+    public Coordonnee(double x, double y, int position) {
         setX(x);
         setY(y);
+        setPosition(position);
     }
 
     public double getX() {
@@ -21,5 +23,13 @@ public class Coordonnee {
 
     public void setY(double y) {
         Y = y;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }
