@@ -1,7 +1,8 @@
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -23,9 +24,8 @@ public class File {
 
         int count = 0;
         try {
-            FileReader fr = new FileReader(nom);
-            BufferedReader fichier = new BufferedReader(fr);
-            Scanner sc = new Scanner(fichier);
+            Path path = FileSystems.getDefault().getPath(nom);
+            Scanner sc = new Scanner(Files.newBufferedReader(path));
             sc.useLocale( Locale.CANADA );
 
             while (sc.hasNext())
@@ -47,7 +47,7 @@ public class File {
                             nouveau.setDistHPrime(d);
                             break;
                         default:
-                            original.getCoordonnees().add(new Coordonnees(0,d));
+                            original.getCoordonnees().add(new Coordonnee(0,d));
                             break;
                     }
                     count++;
@@ -55,6 +55,7 @@ public class File {
             }
             count -= 4;
             original.setN(count);
+            original.getCoordonnees().stream().findFirst().get().setX(original.getX0());
             sc.close();
         } catch ( FileNotFoundException e ) {
             System.err.println("Le fichier spécifié est introuvable.");

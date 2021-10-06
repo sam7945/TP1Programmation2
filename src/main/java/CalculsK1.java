@@ -4,7 +4,7 @@
 public class CalculsK1 extends Calculs {
 
     @Override
-    public double calculPolynome(Coordonnees[] original, Coordonnees[] prime,
+    public double calculPolynome(Coordonnee[] original, Coordonnee[] prime,
                                  int i, int j, double h)
     {
         double pOne = original[i + 1].getY() - original[i].getY();

@@ -14,7 +14,7 @@ public class Original {
     private double distanceH;
     //y donnée dans le fichier, x doit être calculé(𝑥𝑖 = 𝑥0 + 𝑖 × ℎ),i=nième
     // données
-    private ArrayList<Coordonnees> coordonnees;
+    private ArrayList<Coordonnee> coordonnees;
 
     private static Original original;
 
@@ -22,14 +22,20 @@ public class Original {
         coordonnees = new ArrayList<>();
     }
 
-    public static Original InstanceOriginal(){
-        if(original == null)
+    public static Original InstanceOriginal() {
+        if (original == null)
             original = new Original();
-        return  original;
+        return original;
     }
 
     public double calculM(int n, double h, double hPrime) {
         return (((n - 1) * h) / hPrime) + 1;
+    }
+
+    public void calculXi() {
+        for (int i = 0; i < coordonnees.size(); i++) {
+            coordonnees.get(i).setX(x0 + i * distanceH);
+        }
     }
 
 
@@ -65,11 +71,7 @@ public class Original {
         this.distanceH = distanceH;
     }
 
-    public ArrayList<Coordonnees> getCoordonnees() {
+    public ArrayList<Coordonnee> getCoordonnees() {
         return coordonnees;
-    }
-
-    public void setCoordonnees(ArrayList<Coordonnees> coordonnees) {
-        this.coordonnees = coordonnees;
     }
 }

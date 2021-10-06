@@ -1,8 +1,8 @@
-public class Coordonnees {
+public class Coordonnee {
     private double X;
     private double Y;
 
-    public Coordonnees(double x, double y) {
+    public Coordonnee(double x, double y) {
         setX(x);
         setY(y);
     }
