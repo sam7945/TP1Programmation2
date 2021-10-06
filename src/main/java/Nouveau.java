@@ -26,12 +26,22 @@ public class Nouveau {
         nbValeurM = (int) (((nbValeur - 1) * h) / distHPrime) + 1;
     }
 
+    /**
+     * Calcule la valeur du x pour chaque nouveau point et l'ajoute dans un arraylist.
+     *
+     * @param x0 la valeur du x original.
+     */
     public void calculX(int x0) {
         for (int j = 0; j < nbValeurM; j++) {
             coordonnees.add(new Coordonnee(x0 + j * distHPrime, 0));
         }
     }
 
+    /**
+     * Calcule la valeur du y pour chaque nouveau point et l'ajoute dans un arraylist.
+     *
+     * @param k la valeur du degré de k.
+     */
     private void calculY(int k) {
         Calculs calculs;
         Original original = Original.InstanceOriginal();
