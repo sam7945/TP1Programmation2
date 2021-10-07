@@ -4,6 +4,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.Scanner;
 
 /**
@@ -57,7 +58,11 @@ public class File {
             }
             count -= 4;
             original.setN(count);
-            original.getCoordonnees().stream().findFirst().get().setX(original.getX0());
+            Optional<Coordonnee> or = original.getCoordonnees().stream().findFirst();
+            or.ifPresent(coordonnee -> coordonnee.setX(original.getX0()));
+            if(or.isEmpty())
+                throw new NoCoordonatesException();
+
             original.calculXi();
             nouveau.calculM(original.getDistanceH(), original.getN());
             nouveau.calculCoordonnee(original.getCoordonnees().get(0).getX(),
@@ -71,6 +76,8 @@ public class File {
         } catch (FileDataException e) {
             System.err.println("Les données du fichier contiennent " +
                     "du texte. Veuillez fournir un fichier conforme.");
+        } catch (NoCoordonatesException e) {
+            System.err.println("Il n'y a aucune coordonné dans votre fichier!");
         }
     }
 
