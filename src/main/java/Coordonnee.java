@@ -1,3 +1,8 @@
+/**
+ * @Auteur Samuel Dextraze
+ * @Auteur Christophe Cloutier
+ */
+
 public class Coordonnee {
     private double X;
     private double Y;

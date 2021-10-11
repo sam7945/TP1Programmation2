@@ -2,7 +2,9 @@ import java.util.ArrayList;
 
 /**
  * @Auteur Samuel Dextraze
+ * @Auteur Christophe Cloutier
  */
+
 public class Original {
     //Nombre de valeur total
     private int n;

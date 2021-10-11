@@ -3,6 +3,7 @@ import java.util.Comparator;
 
 /**
  * @Auteur Samuel Dextraze
+ * @auteur  Christophe Cloutier
  */
 public class Nouveau {
     //nb de valeur necessaire calculé
@@ -16,6 +17,13 @@ public class Nouveau {
         coordonnees = new ArrayList<>();
     }
 
+    /**
+     * Crée une instance des nouveaux points seulement si
+     * celle-ci n'a pas été créé. Retourne la même instance
+     * si jamais la méthode est rappelée.
+     *
+     * @return  Retourne l'objet d'instance.
+     */
     public static Nouveau instanceNouveau() {
         if (nouveau == null)
             nouveau = new Nouveau();
@@ -36,8 +44,6 @@ public class Nouveau {
         calculX(x0);
         calculY(k);
     }
-
-    ;
 
     /**
      * Calcule la valeur du x pour chaque nouveau point et l'ajoute dans un arraylist.

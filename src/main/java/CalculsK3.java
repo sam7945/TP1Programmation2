@@ -1,5 +1,6 @@
 /**
  * @Auteur Samuel Dextraze
+ * @Auteur Christophe Cloutier
  */
 public class CalculsK3 extends Calculs {
 

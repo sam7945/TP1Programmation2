@@ -1,5 +1,6 @@
 /**
  * @Auteur Samuel Dextraze
+ * @Auteur  Christophe Cloutier
  */
 public abstract class Calculs {
     public abstract double calculPolynome(Coordonnee[] original,

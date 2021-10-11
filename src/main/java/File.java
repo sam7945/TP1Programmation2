@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 /**
  * @Auteur Samuel Dextraze
+ * @Auteur Christophe Cloutier
  */
 public class File {
 
     /**
-     * Demande à l'utilisateur le nom du fichier qu'il souhaite donner en traitement.
      * Lis le fichier en entrée et récupère les données nécessaire au traitement.
      */
     public static void readFile() {
