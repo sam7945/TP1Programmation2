@@ -19,15 +19,14 @@ public class CalculsK1 extends Calculs {
     @Override
     public double calculPolynome(Coordonnee[] original, Coordonnee[] prime,
                                  int i, int j, double h, int iMax) {
-        double pOne = 0;
-        if (i + 1 >= iMax)
-            pOne = 0.0;
-        else
-            pOne = original[i + 1].getY() - original[i].getY();
+        int i1 = i;
+        while (i1 + 1 >= iMax)
+            i1 -= 1;
+
+        double pOne = original[i1 + 1].getY() - original[i1].getY();
 
         double a = pOne / h;
-        double b =
-                original[i].getY() - (a * original[i].getX());
+        double b = original[i1].getY() - (a * original[i1].getX());
         return a * (prime[j].getX()) + b;
     }
 }
