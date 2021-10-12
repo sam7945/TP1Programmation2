@@ -3,12 +3,11 @@ import java.util.Comparator;
 
 /**
  * @Auteur Samuel Dextraze
- * @auteur  Christophe Cloutier
+ * @auteur Christophe Cloutier
  */
 public class Nouveau {
-    //nb de valeur necessaire calculé
+
     private int nbValeurM;
-    //Distance entres 2 x après rééchantillonage, a prendre dans le fichier
     private double distHPrime;
     private ArrayList<Coordonnee> coordonnees;
     private static Nouveau nouveau;
@@ -22,7 +21,7 @@ public class Nouveau {
      * celle-ci n'a pas été créé. Retourne la même instance
      * si jamais la méthode est rappelée.
      *
-     * @return  Retourne l'objet d'instance.
+     * @return Retourne l'objet d'instance.
      */
     public static Nouveau instanceNouveau() {
         if (nouveau == null)
@@ -64,6 +63,7 @@ public class Nouveau {
     private void calculY(int k) {
         Calculs calculs;
         Original original = Original.InstanceOriginal();
+        int nbOriginal = original.getCoordonnees().size() - 1;
         switch (k) {
             case 1:
                 calculs = new CalculsK1();
@@ -84,11 +84,12 @@ public class Nouveau {
             Coordonnee[] coordonneesOri = original.getCoordonnees().toArray(new Coordonnee[0]);
             Coordonnee[] coordonneesNou = getCoordonnees().toArray(new Coordonnee[0]);
 
+
             coordonne.setY(calculs.calculPolynome(
                     coordonneesOri,
                     coordonneesNou, i,
                     coordonne.getPosition(),
-                    original.getDistanceH()));
+                    original.getDistanceH(), nbOriginal));
         }
     }
 

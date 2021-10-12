@@ -60,7 +60,7 @@ public class File {
             original.setN(count);
             Optional<Coordonnee> or = original.getCoordonnees().stream().findFirst();
             or.ifPresent(coordonnee -> coordonnee.setX(original.getX0()));
-            if(or.isEmpty())
+            if (or.isEmpty())
                 throw new NoCoordonatesException();
 
             original.calculXi();

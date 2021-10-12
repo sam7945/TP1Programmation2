@@ -9,22 +9,37 @@ public class CalculsK2 extends Calculs {
      * les coordonnées du nouveau  lorsque k=2.
      *
      * @param original array des coordonnées originales.
-     * @param prime array des nouvelles coordonnées.
-     * @param i compteur pour la point i.
-     * @param j compteur pour le point j.
-     * @param h la distance entre les x originaux.
+     * @param prime    array des nouvelles coordonnées.
+     * @param i        compteur pour la point i.
+     * @param j        compteur pour le point j.
+     * @param h        la distance entre les x originaux.
+     * @param iMax
      * @return la valeur du polynome.
      */
     @Override
-    public double calculPolynome(Coordonnee[] original, Coordonnee[] prime, int i, int j, double h) {
-        double pOne =
-                original[i + 1].getY() - original[i].getY();
-        double pOnePlusOne =
-                original[i + 2].getY() - original[i + 1].getY();
+    public double calculPolynome(Coordonnee[] original, Coordonnee[] prime, int i, int j, double h, int iMax) {
+        double pOne;
+        double pOnePlusOne;
+        int i1 = i;
+
+        while (i1 + 2 >= original.length)
+            i1 -= 1;
+
+        pOne = original[i1 + 1].getY() - original[i1].getY();
+        pOnePlusOne = original[i1 + 2].getY() - original[i1 + 1].getY();
+
+
+
         double pTwo = pOnePlusOne - pOne;
         double a = (pTwo / (2 * Math.pow(h, 2)));
-        double b = (pOne / h) - a * (original[i].getX() + original[i + 1].getX());
-        double c = original[i].getY() - b * original[i].getX() - a * Math.pow(original[i].getX(), 2);
+
+        double b;
+
+        b = (pOne / h) - a * (original[i1].getX() + original[i1 + 1].getX());
+
+
+        double c =
+                original[i1].getY() - b * original[i1].getX() - a * Math.pow(original[i1].getX(), 2);
 
         return a * Math.pow(prime[j].getX(), 2) + b * (prime[j].getX()) + c;
     }

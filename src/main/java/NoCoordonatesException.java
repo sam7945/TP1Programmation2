@@ -3,5 +3,5 @@
  * @Auteur Christophe Cloutier
  */
 
-public class NoCoordonatesException extends Exception{
+public class NoCoordonatesException extends Exception {
 }
