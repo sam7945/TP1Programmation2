@@ -20,7 +20,7 @@ public class CalculsK2 extends Calculs {
     public double calculPolynome(Coordonnee[] original, Coordonnee[] prime, int i, int j, double h, int iMax) {
         int i1 = i;
 
-        while (i1 + 2 >= original.length)
+        while (i1 + 2 >= iMax)
             i1 -= 1;
 
         double pOne = original[i1 + 1].getY() - original[i1].getY();

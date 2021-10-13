@@ -63,7 +63,7 @@ public class Nouveau {
     private void calculY(int k) {
         Calculs calculs;
         Original original = Original.InstanceOriginal();
-        int nbOriginal = original.getCoordonnees().size() - 1;
+        int nbOriginal = original.getCoordonnees().size();
         switch (k) {
             case 1:
                 calculs = new CalculsK1();

@@ -21,7 +21,7 @@ public class CalculsK3 extends Calculs {
 
         int i1 = i;
 
-        while (i1 + 3 >= original.length)
+        while (i1 + 3 >= iMax)
             i1 -= 1;
 
         double pOne = original[i1 + 1].getY() - original[i1].getY();
